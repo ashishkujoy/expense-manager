@@ -32,6 +32,9 @@ const addPrivateHandlers = (app) => {
 
 const createApp = (users, expenses, idGenerator, dataStorage) => {
   const app = express();
+  app.get("/test", (_, res) => {
+    res.send("<h1>Working</h1>");
+  });
   app.users = users;
   app.expenses = expenses;
   app.idGenerator = idGenerator;
@@ -39,6 +42,8 @@ const createApp = (users, expenses, idGenerator, dataStorage) => {
 
   addPublicHandlers(app);
   addPrivateHandlers(app);
+
+  
 
   return app;
 };
