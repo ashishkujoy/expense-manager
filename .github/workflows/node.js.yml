@@ -24,7 +24,7 @@ jobs:
     - run: npm run lint
     - run: npm run test
     - name: Deploy and wait
-      uses: ashishkujoy/render-deploy@v1.0.1
+      uses: ashishkujoy/render-deploy@v1.0.2
       with:
         service-id: ${{ secrets.SERVICE_ID }}
         service-key: ${{ secrets.SERVICE_KEY }}
