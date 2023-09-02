@@ -24,9 +24,10 @@ jobs:
     - run: npm run lint
     - run: npm run test
     - name: Deploy and wait
-      uses: ashishkujoy/render-deploy@v0.0.2
+      uses: ashishkujoy/render-deploy@v0.0.4
       with:
         service-id: ${{ secrets.SERVICE_ID }}
         service-key: ${{ secrets.SERVICE_KEY }}
         api-key: ${{ secrets.API_KEY }}
         max-deployment-wait-ms: 360000
+        delay-in-ms: 10000
