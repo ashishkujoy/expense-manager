@@ -42,7 +42,6 @@ const createApp = (users, expenses, idGenerator, dataStorage) => {
 
   addPublicHandlers(app);
   addPrivateHandlers(app);
-
   
 
   return app;
