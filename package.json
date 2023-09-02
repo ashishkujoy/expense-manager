@@ -6,6 +6,9 @@
   "directories": {
     "test": "test"
   },
+  "engines": {
+    "node": "~20.0.0"
+  },
   "scripts": {
     "setup": "./bin/setup.sh",
     "start": "node main.js",
