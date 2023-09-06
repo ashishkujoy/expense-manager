@@ -58,7 +58,7 @@ Users => will keep the data of the logged in users
 
 Expenses
   fields:
-    expenses; => it will hold the expenses of the logged in users;
+    expenses; => it will hold the expenses of the logged in users;   
 
   methods:
     addExpense(userId, expenseDetails)
