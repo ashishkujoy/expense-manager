@@ -1,5 +1,5 @@
 What is an expense tracker ?
-=> An expense tracker is a program that tracks all your expenditures so that the user can have a clear and detailed understanding of how much they are spending and on what.
+=> An expense tracker is a program that tracks all your expenditures so that the user  can have a clear and detailed understanding of how much they are spending and on what.
 
   What does an expense tracker consist of ?
   => An expense tracker consist of  
