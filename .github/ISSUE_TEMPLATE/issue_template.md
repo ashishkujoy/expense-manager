@@ -1,3 +1,12 @@
+---
+name: Issue
+about: Create a story
+title: ''
+labels: ''
+assignees: ''
+
+---
+
 As a _role_
 
 I want to _action_
