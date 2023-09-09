@@ -10,6 +10,7 @@ What is an expense tracker ?
   => add expense
   => total expense
 
+
 What is an expense ?
 => A thing on which one has spend money.
 
