@@ -10,3 +10,17 @@ export const expenseSchema = z.object({
 });
 
 export type Expense = z.infer<typeof expenseSchema>;
+
+// Schema for expense detection from images
+export const expenseDetectionSchema = z.object({
+    amount: z.number(),
+    description: z.string(),
+    category: z.string(),
+});
+
+export type ExpenseDetection = z.infer<typeof expenseDetectionSchema>;
+
+// Schema for multiple expense detections
+export const expenseDetectionArraySchema = z.array(expenseDetectionSchema);
+
+export type ExpenseDetectionArray = z.infer<typeof expenseDetectionArraySchema>;

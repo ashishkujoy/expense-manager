@@ -1,5 +1,50 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Features
+
+- **Expense Management**: Create, read, and manage personal expenses
+- **Image-based Expense Detection**: Upload receipt images to automatically extract expense data using AI
+- **Authentication**: Secure login with NextAuth.js
+- **Database**: Data persistence with Neon PostgreSQL
+
+## API Endpoints
+
+### POST `/api/expense/detect`
+
+Extract expense data from receipt images using AI.
+
+**Request:**
+- Method: `POST`
+- Content-Type: `multipart/form-data`
+- Body:
+  - `file` (required): Image file (PNG, JPEG, WebP, GIF, BMP, TIFF)
+  - `instruction` (optional): Custom instruction for AI processing
+
+**Response:**
+```json
+[
+  {
+    "amount": 25.99,
+    "description": "Coffee and pastry",
+    "category": "food"
+  }
+]
+```
+
+**Example Usage:**
+```javascript
+const formData = new FormData();
+formData.append('file', imageFile);
+formData.append('instruction', 'Extract all line items with tax information');
+
+const response = await fetch('/api/expense/detect', {
+  method: 'POST',
+  body: formData
+});
+
+const expenses = await response.json();
+```
+
 ## Getting Started
 
 First, run the development server:

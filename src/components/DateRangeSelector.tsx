@@ -31,11 +31,11 @@ const DateRangeSelector = () => {
     const [endDate, setEndDate] = useState('');
     const [isOpen, setIsOpen] = useState(false);
 
-    const clearDates = () => useCallback(() => {
+    const clearDates = useCallback(() => {
         setStartDate('');
         setEndDate('');
         setIsOpen(false);
-    }, [setStartDate, setEndDate, setIsOpen]);
+    }, []);
 
     const formatDate = (dateString: string) => {
         if (!dateString) return '';

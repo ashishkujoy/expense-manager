@@ -3,7 +3,6 @@ import DateRangeSelector from "./DateRangeSelector";
 
 export type ExpenseTableProps = {
     expenses: Array<WithId<Expense>>;
-    mini: boolean;
 };
 
 const ExpenseItem = (expense: Expense) => {
@@ -21,7 +20,7 @@ const ExpenseItem = (expense: Expense) => {
     )
 }
 
-const ExpenseTable = ({ expenses, mini }: ExpenseTableProps) => {
+const ExpenseTable = ({ expenses }: ExpenseTableProps) => {
     return (
         <div className="bg-white rounded-xl p-6 shadow-lg h-full">
             <div className="text-center mb-6">

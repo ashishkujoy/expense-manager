@@ -13,7 +13,7 @@ export default async function Home() {
   return (
     <div className="bg-white rounded-xl shadow-sm p-8 flex flex-col space-y-4 h-full">
       <CloseableExpenseForm />
-      <ExpenseTable expenses={expenses} mini={false} />
+      <ExpenseTable expenses={expenses} />
     </div>
   );
 }
