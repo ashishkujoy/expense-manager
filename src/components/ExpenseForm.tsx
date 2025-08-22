@@ -1,5 +1,6 @@
 "use client";
 
+import { useExpenseForm } from "@/hooks/expenseForm";
 import { Calendar, Camera, IndianRupee, Tag } from "lucide-react";
 import { useState } from "react";
 
@@ -14,13 +15,13 @@ const categories = ['Food', 'Transport', 'Shopping', 'Utilities', 'Entertainment
 
 
 const ExpenseForm = () => {
+    const { expense, updateExpense, resetForm, submitExpense, loading } = useExpenseForm();
     const [showPhotoCapture, setShowPhotoCapture] = useState(false);
-    const [newExpense, setNewExpense] = useState<Expense>({
-        date: new Date().toISOString().split('T')[0],
-        amount: '',
-        category: '',
-        description: ''
-    });
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        submitExpense();
+    };
 
     return (
         <div className="space-y-6">
@@ -42,73 +43,79 @@ const ExpenseForm = () => {
                     <span className="font-medium">Scan Receipt</span>
                 </button>
             </div>
+            <form onSubmit={handleSubmit}>
+                <div className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                <Calendar className="w-4 h-4 inline mr-1" />
+                                Date
+                            </label>
+                            <input
+                                type="date"
+                                value={expense.date}
+                                onChange={(e) => updateExpense({ date: e.target.value })}
+                                required
+                                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            />
+                        </div>
 
-
-            <div className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            <Calendar className="w-4 h-4 inline mr-1" />
-                            Date
-                        </label>
-                        <input
-                            type="date"
-                            value={newExpense.date}
-                            onChange={(e) => setNewExpense({ ...newExpense, date: e.target.value })}
-                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        />
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                <IndianRupee className="w-4 h-4 inline mr-1" />
+                                Amount
+                            </label>
+                            <input
+                                type="number"
+                                step="0.01"
+                                placeholder="0.00"
+                                value={expense.amount}
+                                required
+                                onChange={(e) => updateExpense({ amount: e.target.value })}
+                                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            />
+                        </div>
                     </div>
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                            <IndianRupee className="w-4 h-4 inline mr-1" />
-                            Amount
+                            <Tag className="w-4 h-4 inline mr-1" />
+                            Category
                         </label>
+                        <select
+                            value={expense.category}
+                            onChange={(e) => updateExpense({ category: e.target.value })}
+                            required
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        >
+                            <option value="">Select a category</option>
+                            {categories.map(category => (
+                                <option key={category} value={category}>{category}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
                         <input
-                            type="number"
-                            step="0.01"
-                            placeholder="0.00"
-                            value={newExpense.amount}
-                            onChange={(e) => setNewExpense({ ...newExpense, amount: e.target.value })}
+                            type="text"
+                            placeholder="What did you spend on?"
+                            value={expense.description}
+                            required
+                            onChange={(e) => updateExpense({ description: e.target.value })}
                             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         />
                     </div>
-                </div>
 
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                        <Tag className="w-4 h-4 inline mr-1" />
-                        Category
-                    </label>
-                    <select
-                        value={newExpense.category}
-                        onChange={(e) => setNewExpense({ ...newExpense, category: e.target.value })}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    <button
+                        className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                        type="submit"
+                        disabled={loading}
                     >
-                        <option value="">Select a category</option>
-                        {categories.map(category => (
-                            <option key={category} value={category}>{category}</option>
-                        ))}
-                    </select>
+                        Add Expense
+                    </button>
                 </div>
-
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                    <input
-                        type="text"
-                        placeholder="What did you spend on?"
-                        value={newExpense.description}
-                        onChange={(e) => setNewExpense({ ...newExpense, description: e.target.value })}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                </div>
-
-                <button
-                    className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
-                >
-                    Add Expense
-                </button>
-            </div>
+            </form>
         </div>
     )
 };
