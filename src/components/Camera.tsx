@@ -10,6 +10,7 @@ const WebCamera = ({ onCapture }: WebCameraProps) => {
     const videoConstraints = {
         width: 1280,
         height: 720,
+        facingMode: { exact: "environment" }
     };
     const capture = React.useCallback(
         () => {
