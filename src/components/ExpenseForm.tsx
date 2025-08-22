@@ -71,7 +71,7 @@ const ExpenseForm = () => {
                                 placeholder="0.00"
                                 value={expense.amount}
                                 required
-                                onChange={(e) => updateExpense({ amount: e.target.value })}
+                                onChange={(e) => updateExpense({ amount: parseFloat(e.target.value) })}
                                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                             />
                         </div>

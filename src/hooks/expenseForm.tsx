@@ -25,7 +25,7 @@ export const useExpenseForm = () => {
     const [loading, setLoading] = useState(false);
     const [expense, setExpense] = useState<Expense>({
         date: new Date().toISOString().split('T')[0],
-        amount: '',
+        amount: 0,
         category: '',
         description: ''
     });
@@ -44,7 +44,7 @@ export const useExpenseForm = () => {
     const resetForm = () => {
         setExpense({
             date: new Date().toISOString().split('T')[0],
-            amount: '',
+            amount: 0,
             category: '',
             description: ''
         });
