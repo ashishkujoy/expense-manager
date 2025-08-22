@@ -10,11 +10,11 @@ const postExpense = async (expense: Expense) => {
             },
             body: JSON.stringify(expense),
         });
-        const body = await res.json();
         if (!res.ok) {
+            const body = await res.json();
             return { success: false, error: body.error || 'Unknown error' }
         }
-        return { success: true, data: body }
+        return { success: true }
     } catch (error) {
         console.error("Error posting expense:", error);
         return { success: false, error: 'Failed to post expense' }
