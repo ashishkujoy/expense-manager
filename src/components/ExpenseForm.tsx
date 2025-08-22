@@ -120,4 +120,19 @@ const ExpenseForm = () => {
     )
 };
 
-export default ExpenseForm;
+const CloseableExpenseForm = () => {
+    const [open, setOpen] = useState(false);
+
+    return (
+        <div>
+            <button
+                className="bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                onClick={() => setOpen(!open)}>
+                {open ? "Close" : "Add Expense"}
+            </button>
+            {open && <ExpenseForm />}
+        </div>
+    );
+}
+
+export default CloseableExpenseForm;
