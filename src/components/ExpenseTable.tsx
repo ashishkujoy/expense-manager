@@ -1,4 +1,5 @@
 import { Expense, WithId } from "@/types/Expense";
+import DateRangeSelector from "./DateRangeSelector";
 
 export type ExpenseTableProps = {
     expenses: Array<WithId<Expense>>;
@@ -26,7 +27,9 @@ const ExpenseTable = ({ expenses, mini }: ExpenseTableProps) => {
             <div className="text-center mb-6">
                 <h2 className="text-2xl font-semibold">Your Expenses</h2>
             </div>
-
+            <div className="mb-2">
+                <DateRangeSelector />
+            </div>
             <div className="overflow-x-auto flex-row gap-y-2">
                 {
                     expenses.map(expense => (
