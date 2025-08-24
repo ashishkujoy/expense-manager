@@ -43,6 +43,7 @@ export const POST = async (req: NextRequest) => {
             "Extract amount (numeric), description, and a category from this bill image.";
 
         const bill = await parseBill(dataUrl, finalInstruction);
+        console.log(bill);
         return new Response(JSON.stringify(bill), {
             status: 200,
             headers: {
